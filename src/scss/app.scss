@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'Cocon Next Arabic';
+  src: url('~@/assets/fonts/CoconNextArabic-Light.woff2') format('woff2'),
+  url('~@/assets/fonts/CoconNextArabic-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cocon Next Arabic';
+  src: url('~@/assets/fonts/CoconNextArabic-Bold.woff2') format('woff2'),
+  url('~@/assets/fonts/CoconNextArabic-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cocon Next Arabic';
+  src: url('~@/assets/fonts/CoconNextArabic-Regular.woff2') format('woff2'),
+  url('~@/assets/fonts/CoconNextArabic-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --primary: #6FA3D2;
+  --secondary: #E4F5FF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+  font-family: 'Cocon Next Arabic', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
