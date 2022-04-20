@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <animated-background />
     <app-navbar />
     <router-view />
   </div>
@@ -7,8 +8,9 @@
 
 <script>
 import AppNavbar from '@/components/AppNavbar'
+import AnimatedBackground from '@/components/home/AnimatedBackground'
 
 export default {
-  components: { AppNavbar }
+  components: { AnimatedBackground, AppNavbar },
 }
 </script>
