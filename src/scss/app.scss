@@ -1,3 +1,4 @@
+@charset "utf-8";
 @font-face {
   font-family: 'Cocon Next Arabic';
   src: url('~@/assets/fonts/CoconNextArabic-Light.woff2') format('woff2'),
@@ -30,21 +31,24 @@
   --secondary: #E4F5FF;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+// Set your brand colors
+$blue: #6FA3D2;
+$cyan: #E4F5FF;
+$cyan-invert: findColorInvert($cyan) !default;
 
-html {
-  font-size: 20px;
-  font-family: 'Cocon Next Arabic', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+// Update Bulma's global variables
+$body-size: 20px;
+$family-sans-serif: 'Cocon Next Arabic', sans-serif;
+$primary: $blue;
+$custom-colors: ("secondary":($cyan, $cyan-invert));
 
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+// Import only what you need from Bulma
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/sass/base/_all.sass";
+@import "~bulma/sass/elements/button.sass";
+@import "~bulma/sass/elements/container.sass";
+@import "~bulma/sass/elements/title.sass";
+@import "~bulma/sass/form/_all.sass";
+@import "~bulma/sass/components/navbar.sass";
+@import "~bulma/sass/layout/hero.sass";
+@import "~bulma/sass/layout/section.sass";
