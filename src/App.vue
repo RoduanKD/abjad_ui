@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import AppNavbar from '@/components/AppNavbar'
-import AnimatedBackground from '@/components/home/AnimatedBackground'
+import AppNavbar from '@/components/layout/AppNavbar'
+import AnimatedBackground from '@/components/layout/AnimatedBackground'
 
 export default {
   components: { AnimatedBackground, AppNavbar },

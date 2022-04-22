@@ -239,5 +239,6 @@ export default {
   z-index: -1;
   top: 50%;
   transform: translateY(-50%);
+  pointer-events: none;
 }
 </style>
