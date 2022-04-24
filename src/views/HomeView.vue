@@ -29,7 +29,7 @@
             </div>
             <div class="column is-md-6">
               <img
-                src="@/assets/penguin.svg"
+                src="@/assets/penguin/hello.svg"
                 alt=""
                 class="image mx-auto"
               >
