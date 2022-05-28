@@ -2,7 +2,7 @@
   <div id="app">
     <animated-background />
     <app-navbar />
-    <router-view />
+    <router-view class="page" />
   </div>
 </template>
 
@@ -14,3 +14,10 @@ export default {
   components: { AnimatedBackground, AppNavbar },
 }
 </script>
+
+<style>
+.page {
+  padding-top: 7rem;
+  min-height: 100vh;
+}
+</style>

@@ -16,7 +16,13 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/LettersListView.vue'),
+    component: () => import(/* webpackChunkName: "letters-index" */ '../views/letters/ListView.vue'),
+  },
+  {
+    path: '/letters/:letter',
+    name: 'letters.show',
+    component: () => import(/* webpackChunkName: "letters-show" */ '../views/letters/ShowView.vue'),
+    props: route => ({ letter: route.params.letter }),
   },
 ]
 

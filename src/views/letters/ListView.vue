@@ -2,13 +2,14 @@
   <div class="letters">
     <div class="container">
       <div class="letters-grid">
-        <div
+        <router-link
           v-for="letter in letters"
           :key="letter"
           class="letter"
+          :to="{ name: 'letters.show', params: { letter } }"
         >
           {{ letter }}
-        </div>
+        </router-link>
         <div class="penguin">
           <img
             src="@/assets/penguin/choose-letter.svg"
@@ -24,7 +25,7 @@
 <script>
 export default {
   data: () => ({
-    letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+    letters: ['أ', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م', 'ن', 'ه', 'و', 'ي'],
   }),
 }
 </script>
@@ -62,27 +63,6 @@ $letter-size: 100px;
   }
 
   .letter {
-    position: relative;
-    width: $letter-size;
-    height: $letter-size;
-    border-radius: 50%;
-    background-color: $primary;
-    text-align: center;
-    line-height: $letter-size;
-    font-size: 3em;
-    color: $white;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      bottom: 5px;
-      left: 5px;
-      border: 1px dashed $white;
-      border-radius: 50%;
-    }
-
     @media screen and (max-width: $tablet) {
       &:nth-of-type(3N + 2) {
         margin-top: 6rem;

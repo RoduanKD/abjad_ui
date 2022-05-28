@@ -42,6 +42,30 @@ $family-sans-serif: 'Cocon Next Arabic', sans-serif;
 $primary: $blue;
 $custom-colors: ("secondary":($cyan, $cyan-invert));
 $navbar-height: 6rem;
+$letter-size: 100px;
 
 // Import only what you need from Bulma
 @import "~bulma/bulma.sass";
+
+.letter {
+  position: relative;
+  width: $letter-size;
+  height: $letter-size;
+  border-radius: 50%;
+  background-color: $primary;
+  text-align: center;
+  line-height: $letter-size;
+  font-size: 3em;
+  color: $white;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    border: 1px dashed $white;
+    border-radius: 50%;
+  }
+}
