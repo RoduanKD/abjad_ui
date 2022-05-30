@@ -77,7 +77,7 @@ export default {
     const self = this;
     (function animate () {
       self.$anime({
-        targets: '.letter',
+        targets: 'g.letter',
         translateY: function () {
           return self.$anime.random(-10, 10)
         },
