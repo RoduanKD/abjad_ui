@@ -2,7 +2,9 @@
   <div id="app">
     <animated-background />
     <app-navbar />
-    <router-view class="page" />
+    <vue-page-transition name="fade-in-down">
+      <router-view class="page" />
+    </vue-page-transition>
   </div>
 </template>
 
@@ -15,9 +17,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .page {
-  padding-top: 7rem;
+  padding-top: $navbar-height;
   min-height: 100vh;
 }
 </style>

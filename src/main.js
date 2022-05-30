@@ -4,8 +4,10 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import VueAnime from 'vue-animejs'
+import VuePageTransition from 'vue-page-transition'
 
 Vue.use(VueAnime)
+Vue.use(VuePageTransition)
 
 Vue.config.productionTip = false
 
