@@ -6,7 +6,11 @@
     <div class="container">
       <nav>
         <ul>
-          <li><a href="#">الرئيسية</a></li>
+          <li>
+            <router-link :to="{ name: 'home' }">
+              الرئيسية
+            </router-link>
+          </li>
           <li><a href="#">حول المشروع</a></li>
         </ul>
       </nav>
