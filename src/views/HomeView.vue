@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <section class="hero is-fullheight">
+    <section class="hero">
       <div class="hero-body">
         <div class="container">
           <div class="columns">
@@ -13,7 +13,7 @@
                 <div class="column is-4">
                   <router-link
                     class="button is-primary is-block is-rounded"
-                    to="#"
+                    :to="{ name: 'letters.index' }"
                   >
                     هَيَّا نَتَعَلَّم
                   </router-link>
