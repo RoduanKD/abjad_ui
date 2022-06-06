@@ -21,5 +21,6 @@ export default {
 .page {
   padding-top: $navbar-height;
   min-height: 100vh;
+  height: 1px;
 }
 </style>
