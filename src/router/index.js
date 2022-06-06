@@ -24,6 +24,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "letters-show" */ '../views/letters/ShowView.vue'),
     props: route => ({ letter: route.params.letter }),
   },
+  {
+    path: '/letters/:letter/exercise',
+    name: 'letters.exercise',
+    component: () => import(/* webpackChunkName: "letters-show" */ '../views/letters/ExerciseView.vue'),
+    props: route => ({ letter: route.params.letter }),
+  },
 ]
 
 const router = new VueRouter({

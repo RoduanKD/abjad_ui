@@ -11,7 +11,7 @@
           <img
             src="@/assets/penguin/let-us-learn.svg"
             alt=""
-            class="image mx-auto"
+            class="image"
           >
         </div>
       </div>
@@ -19,7 +19,7 @@
         <div class="column is-3">
           <button
             class="button is-primary is-medium is-fullwidth is-rounded"
-            @click="$store.state.hideNavbar = !$store.state.hideNavbar"
+            @click="$router.push({ name: 'letters.exercise', params: {letter}})"
           >
             بدء التمرين
           </button>
