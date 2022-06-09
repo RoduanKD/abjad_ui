@@ -40,11 +40,12 @@ import VideoTutorial from '@/components/letters/exercises/VideoTutorial'
 import MultipleChoice from '@/components/letters/exercises/MultipleChoice'
 import SortLetters from '@/components/letters/exercises/SortLetters'
 import LetterExerciseHeader from '@/components/letters/LetterExerciseHeader'
+import ListenAndRepeat from '@/components/letters/exercises/ListenAndRepeat'
 
 export default {
   name: 'ExerciseView',
 
-  components: { LetterExerciseHeader, SortLetters, MultipleChoice, VideoTutorial, LetterExerciseProgressBar, LetterExerciseFooter },
+  components: { ListenAndRepeat, LetterExerciseHeader, SortLetters, MultipleChoice, VideoTutorial, LetterExerciseProgressBar, LetterExerciseFooter },
   props: {
     letter: {
       type: String,
@@ -55,7 +56,7 @@ export default {
   data: () => ({
     resource: letterExampleResource,
     current_exercise_index: 0,
-    exercise_finished: false,
+    exercise_finished: true,
   }),
 
   computed: {
@@ -67,7 +68,7 @@ export default {
     },
 
     maxProgress () {
-      return this.resource.exercises.length - 1
+      return this.resource.exercises.length
     },
     currentProgress () {
       return this.current_exercise_index + 1
