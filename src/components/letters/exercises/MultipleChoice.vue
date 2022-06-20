@@ -1,5 +1,16 @@
 <template>
-  <div class="columns is-mobile">
+  <div class="columns is-mobile is-multiline">
+    <div
+      v-if="exercise.question.image"
+      class="column is-12"
+    >
+      <figure class="image mx-auto question-image">
+        <img
+          :src="exercise.question.image"
+          :alt="exercise.question.text"
+        >
+      </figure>
+    </div>
     <div
       v-for="(choice, i) in choices"
       :key="i"
@@ -13,7 +24,7 @@
         <div class="card-text is-flex is-justify-content-center is-align-items-center fill-height">
           <figure
             v-if="choice.image"
-            class="image is-128x128"
+            class="image choice-image"
           >
             <img
               :src="choice.image"
@@ -70,9 +81,23 @@ export default {
   transition: all .3s;
   cursor: pointer;
 
+  .card-text {
+    font-size: 3rem;
+  }
+
   &.selected {
     border: 2px solid $primary;
     box-shadow: $card-shadow;
   }
+
+  .choice-image {
+    width: 80%;
+  }
+}
+
+.question-image img {
+  max-height: 200px;
+  width: auto;
+  margin: 0 auto;
 }
 </style>
