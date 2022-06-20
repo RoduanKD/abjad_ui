@@ -78,6 +78,11 @@ export default {
     },
   },
 
+  async created () {
+    const res = await this.axios.get(`/letters/${this.letter}/exercises`)
+    this.resource = res.data.data
+  },
+
   mounted () {
     this.$store.state.hideNavbar = !this.$store.state.hideNavbar
   },
