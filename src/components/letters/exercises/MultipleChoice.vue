@@ -11,11 +11,15 @@
         @click="selectChoice(choice)"
       >
         <div class="card-text is-flex is-justify-content-center is-align-items-center fill-height">
-          <img
-            v-if="choice.media"
-            :src="choice.media"
-            :alt="choice.text"
+          <figure
+            v-if="choice.image"
+            class="image is-128x128"
           >
+            <img
+              :src="choice.image"
+              :alt="choice.text"
+            >
+          </figure>
           <div
             v-else
             v-text="choice.text"
@@ -43,10 +47,7 @@ export default {
 
   computed: {
     choices () {
-      const choices = JSON.parse(JSON.stringify(this.exercise.choices))
-      choices.sort(() => Math.random() - 0.5)
-
-      return choices
+      return this.exercise.attributes.choices
     },
   },
 
