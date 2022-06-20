@@ -9,6 +9,8 @@ import AudioRecorder from 'vue-audio-recorder'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+axios.defaults.baseURL = 'http://abjad.test/api/'
+
 Vue.use(VueAxios, axios)
 Vue.use(AudioRecorder)
 Vue.use(VueAnime)

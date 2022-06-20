@@ -6,9 +6,9 @@
           v-for="letter in letters"
           :key="letter"
           class="letter"
-          :to="{ name: 'letters.show', params: { letter } }"
+          :to="{ name: 'letters.show', params: { letter: letter.value } }"
         >
-          {{ letter }}
+          {{ letter.value }}
         </router-link>
         <div class="penguin">
           <img
@@ -27,6 +27,11 @@ export default {
   data: () => ({
     letters: ['أ', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م', 'ن', 'ه', 'و', 'ي'],
   }),
+
+  async created () {
+    const res = await this.axios.get('/letters')
+    this.letters = res.data.data
+  },
 }
 </script>
 
