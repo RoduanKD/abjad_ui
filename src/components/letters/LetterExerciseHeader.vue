@@ -3,6 +3,8 @@
     <img
       src="@/assets/penguin/listen-button.svg"
       alt="زر الاستماع"
+      style="cursor: pointer"
+      @click="play"
     >
     <h1
       class="subtitle is-4 px-3"
@@ -19,6 +21,12 @@ export default {
     question: {
       type: Object,
       default: () => ({}),
+    },
+  },
+
+  methods: {
+    play () {
+      (new Audio(this.question.voice)).play()
     },
   },
 }
