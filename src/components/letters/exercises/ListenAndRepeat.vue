@@ -3,7 +3,7 @@
     <div class="column is-12">
       <ul class="steps is-horizontal">
         <li
-          v-for="(letter, i) in exercise.letters"
+          v-for="(letter, i) in exercise.attributes.recordings"
           :key="i"
           class="steps-segment"
           :class="{ 'is-active': i === active_index }"
@@ -20,6 +20,30 @@
         :time="0.05"
         :after-recording="callback"
       />
+      <div class="file mt-4 is-loading">
+        <label class="file-label">
+          <input
+            class="file-input"
+            type="file"
+            accept="audio/wav"
+            @change="upload"
+          >
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload" />
+            </span>
+            <span class="file-label">
+              اختر ملفاً صوتياً
+            </span>
+          </span>
+        </label>
+      </div>
+      <div
+        v-if="character"
+        class="subtitle is-4"
+      >
+        الحرف المكتشف: {{ character }}
+      </div>
     </div>
   </div>
 </template>
@@ -37,14 +61,27 @@ export default {
 
   data: () => ({
     active_index: 0,
+    recording: null,
+    character: '',
   }),
+
   methods: {
     callback (data) {
       const payload = new FormData()
       payload.append('file', data.blob, 'test.wav')
 
-      this.axios.post('http://abjad.test/api/detect-character', payload).then(res => {
-        console.log(res.data)
+      this.axios.post('detect-character', payload).then(res => {
+        this.character = res.data
+      })
+    },
+    upload (e) {
+      this.recording = e.target.files[0]
+      const payload = new FormData()
+
+      payload.append('file', this.recording, 'test.wav')
+
+      this.axios.post('detect-character', payload).then(res => {
+        this.character = res.data
       })
     },
   },
