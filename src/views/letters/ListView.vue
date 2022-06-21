@@ -4,7 +4,7 @@
       <div class="letters-grid">
         <router-link
           v-for="letter in letters"
-          :key="letter"
+          :key="letter.text"
           class="letter"
           :to="{ name: 'letters.show', params: { letter: letter.value } }"
         >
@@ -25,7 +25,7 @@
 <script>
 export default {
   data: () => ({
-    letters: ['أ', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م', 'ن', 'ه', 'و', 'ي'],
+    letters: [],
   }),
 
   async created () {
