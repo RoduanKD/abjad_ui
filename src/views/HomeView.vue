@@ -20,7 +20,7 @@
                 </div><div class="column is-4">
                   <router-link
                     class="button is-primary is-block is-rounded is-outlined"
-                    to="#"
+                    :to="{ name: 'login' }"
                   >
                     تسجيل الدخول
                   </router-link>

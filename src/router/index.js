@@ -30,6 +30,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "letters-show" */ '../views/letters/ExerciseView.vue'),
     props: route => ({ letter: route.params.letter }),
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue'),
+  },
 ]
 
 const router = new VueRouter({

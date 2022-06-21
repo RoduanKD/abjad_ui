@@ -10,6 +10,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 axios.defaults.baseURL = 'http://abjad.test/api/'
+axios.defaults.headers.Authorization = `Bearer ${store.state.token}`
 
 Vue.use(VueAxios, axios)
 Vue.use(AudioRecorder)
