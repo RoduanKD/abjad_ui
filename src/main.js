@@ -10,7 +10,14 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 axios.defaults.baseURL = 'http://abjad.test/api/'
-axios.defaults.headers.Authorization = `Bearer ${store.state.token}`
+if (store.state.token) { axios.defaults.headers.Authorization = `Bearer ${store.state.token}` }
+axios.interceptors.response.use(undefined, err => {
+  if (err.response?.status === 401) {
+    store.state.token = null
+    axios.defaults.headers.Authorization = undefined
+    router.push({ name: 'login' })
+  }
+})
 
 Vue.use(VueAxios, axios)
 Vue.use(AudioRecorder)
