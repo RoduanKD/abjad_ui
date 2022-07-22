@@ -29,8 +29,12 @@ export default {
   }),
 
   async created () {
-    const res = await this.axios.get('/letters')
-    this.letters = res.data.data
+    try {
+      const res = await this.axios.get('/letters')
+      this.letters = res.data.data
+    } catch (e) {
+      console.log(e)
+    }
   },
 }
 </script>
