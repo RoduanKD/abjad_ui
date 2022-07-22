@@ -20,7 +20,7 @@
         :time="0.05"
         :after-recording="callback"
       />
-      <div class="file mt-4 is-loading">
+      <div class="file mt-4 is-justify-content-center is-loading">
         <label class="file-label">
           <input
             class="file-input"
@@ -28,13 +28,8 @@
             accept="audio/wav"
             @change="upload"
           >
-          <span class="file-cta">
-            <span class="file-icon">
-              <i class="fas fa-upload" />
-            </span>
-            <span class="file-label">
-              اختر ملفاً صوتياً
-            </span>
+          <span class="file-icon">
+            <i class="fas fa-upload" />
           </span>
         </label>
       </div>
@@ -92,5 +87,9 @@ export default {
 .steps:not(.is-vertical) .steps-segment:not(:last-child):after {
   right: 0;
   left: 0;
+}
+
+.ar {
+  box-shadow: none !important;
 }
 </style>
