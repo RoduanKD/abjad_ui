@@ -41,11 +41,12 @@ import MultipleChoice from '@/components/letters/exercises/MultipleChoice'
 import SortLetters from '@/components/letters/exercises/SortLetters'
 import LetterExerciseHeader from '@/components/letters/LetterExerciseHeader'
 import ListenAndRepeat from '@/components/letters/exercises/ListenAndRepeat'
+import DrawLetter from '@/components/letters/exercises/DrawLetter'
 
 export default {
   name: 'ExerciseView',
 
-  components: { ListenAndRepeat, LetterExerciseHeader, SortLetters, MultipleChoice, VideoTutorial, LetterExerciseProgressBar, LetterExerciseFooter },
+  components: { DrawLetter, ListenAndRepeat, LetterExerciseHeader, SortLetters, MultipleChoice, VideoTutorial, LetterExerciseProgressBar, LetterExerciseFooter },
   props: {
     letter: {
       type: String,

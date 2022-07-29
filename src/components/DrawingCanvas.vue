@@ -3,7 +3,7 @@
     ref="canvas"
     :width="width"
     :height="height"
-    style="border:2px solid;touch-action: none"
+    style="border:2px solid;touch-action: none;display: block;"
   />
 </template>
 
