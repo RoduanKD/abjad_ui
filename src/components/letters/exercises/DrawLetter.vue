@@ -16,6 +16,12 @@
         v-model="letter"
         class="mx-auto"
       />
+      <button
+        class="button is-danger is-small mt-2 mx-auto is-block"
+        @click="letter = ''"
+      >
+        <span class="icon"><i class="fa fa-trash" /></span>
+      </button>
     </div>
   </div>
 </template>
