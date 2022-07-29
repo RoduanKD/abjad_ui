@@ -43,6 +43,7 @@
 
 <script>
 import AnimatedLetters from '@/components/home/AnimatedLetters'
+
 export default {
   name: 'HomeView',
   components: { AnimatedLetters },
