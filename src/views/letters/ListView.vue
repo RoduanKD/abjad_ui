@@ -61,6 +61,7 @@ $letter-size: 100px;
     grid-area: p;
     justify-self: start;
     align-self: end;
+    margin: 0 auto;
   }
 
   @media screen and (min-width: $tablet) {
