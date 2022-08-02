@@ -65,7 +65,7 @@ export default {
   methods: {
     selectChoice (choice) {
       this.selected = choice
-      this.$emit('finished')
+      this.$emit('finished', choice.text)
     },
   },
 }

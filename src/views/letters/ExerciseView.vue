@@ -23,12 +23,16 @@
         </div>
         <div class="column is-12">
           <letter-exercise-footer
-            :can-progress="canProgress"
-            @next-clicked="nextQuestion"
+            :can-proceed="canProceed"
+            @next-clicked="submitAnswer"
           />
         </div>
       </div>
     </div>
+    <correct-answer-modal
+      :is-opened="answerIsCorrect"
+      @ok="nextQuestion"
+    />
   </section>
 </template>
 
@@ -42,11 +46,13 @@ import SortLetters from '@/components/letters/exercises/SortLetters'
 import LetterExerciseHeader from '@/components/letters/LetterExerciseHeader'
 import ListenAndRepeat from '@/components/letters/exercises/ListenAndRepeat'
 import DrawLetter from '@/components/letters/exercises/DrawLetter'
+import CorrectAnswerModal from '@/components/letters/exercises/CorrectAnswerModal'
 
 export default {
   name: 'ExerciseView',
 
-  components: { DrawLetter, ListenAndRepeat, LetterExerciseHeader, SortLetters, MultipleChoice, VideoTutorial, LetterExerciseProgressBar, LetterExerciseFooter },
+  components: { CorrectAnswerModal, DrawLetter, ListenAndRepeat, LetterExerciseHeader, SortLetters, MultipleChoice, VideoTutorial, LetterExerciseProgressBar, LetterExerciseFooter },
+
   props: {
     letter: {
       type: String,
@@ -58,6 +64,8 @@ export default {
     resource: letterExampleResource,
     current_exercise_index: 0,
     exercise_finished: true,
+    answer: null,
+    answerIsCorrect: false,
   }),
 
   computed: {
@@ -67,14 +75,13 @@ export default {
     currentExerciseComponent () {
       return this.currentExercise.type.replaceAll('_', '-')
     },
-
     maxProgress () {
       return this.resource.exercises.length
     },
     currentProgress () {
       return this.current_exercise_index + 1
     },
-    canProgress () {
+    canProceed () {
       return !!this.exercise_finished
     },
   },
@@ -93,16 +100,31 @@ export default {
   },
 
   methods: {
-    exerciseFinished () {
+    async submitAnswer () {
+      if (this.currentExercise.type === 'video_tutorial') return this.nextQuestion()
       // send answer to server
+      const res = await this.axios.post(`/exercises/${this.currentExercise.id}/submissions`, { answer: this.answer })
       // if answer is correct: show congrats & proceed
+      if (res.data.correct) {
+        this.showCorrectAnswerModal()
+      } else {
+        alert('sorry it is wrong')
+      }
       // if not: show try again
-
-      this.exercise_finished = true
+    },
+    exerciseFinished (answer) {
+      this.answer = answer
+      if (this.answer) { this.exercise_finished = true }
     },
 
     nextQuestion () {
       this.current_exercise_index++
+      this.answerIsCorrect = false
+      this.exercise_finished = this.currentExercise.type === 'video_tutorial'
+    },
+
+    showCorrectAnswerModal () {
+      this.answerIsCorrect = true
     },
   },
 }

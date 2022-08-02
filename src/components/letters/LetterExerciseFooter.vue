@@ -9,7 +9,7 @@
     <div class="column is-3-desktop">
       <button
         class="button is-primary is-rounded is-fullwidth mx-auto"
-        :disabled="!canProgress"
+        :disabled="!canProceed"
         @click="$emit('next-clicked')"
       >
         تحقق
@@ -21,7 +21,7 @@
 export default {
   name: 'LetterExerciseFooter',
   props: {
-    canProgress: {
+    canProceed: {
       type: Boolean,
       default: false,
       required: true,
