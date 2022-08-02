@@ -9,7 +9,7 @@
           <div class="column is-3-desktop">
             <figure class="image">
               <img
-                src="@/assets/penguin/bravo.svg"
+                src="@/assets/penguin/sorry.svg"
                 alt=""
               >
             </figure>
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="column has-text-centered is-size-4">
-        الإجابة صحيحة، أحسنت!
+        الإجابة خاطئة، أعد المحاولة!
       </div>
     </div>
     <template #footer>

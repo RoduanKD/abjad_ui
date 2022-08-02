@@ -33,6 +33,10 @@
       :is-opened="answerIsCorrect"
       @ok="nextQuestion"
     />
+    <wrong-answer-modal
+      :is-opened="answerIsWrong"
+      @ok="answerIsWrong = false"
+    />
   </section>
 </template>
 
@@ -47,11 +51,12 @@ import LetterExerciseHeader from '@/components/letters/LetterExerciseHeader'
 import ListenAndRepeat from '@/components/letters/exercises/ListenAndRepeat'
 import DrawLetter from '@/components/letters/exercises/DrawLetter'
 import CorrectAnswerModal from '@/components/letters/exercises/CorrectAnswerModal'
+import WrongAnswerModal from '@/components/letters/exercises/WrongAnswerModal'
 
 export default {
   name: 'ExerciseView',
 
-  components: { CorrectAnswerModal, DrawLetter, ListenAndRepeat, LetterExerciseHeader, SortLetters, MultipleChoice, VideoTutorial, LetterExerciseProgressBar, LetterExerciseFooter },
+  components: { WrongAnswerModal, CorrectAnswerModal, DrawLetter, ListenAndRepeat, LetterExerciseHeader, SortLetters, MultipleChoice, VideoTutorial, LetterExerciseProgressBar, LetterExerciseFooter },
 
   props: {
     letter: {
@@ -66,6 +71,7 @@ export default {
     exercise_finished: true,
     answer: null,
     answerIsCorrect: false,
+    answerIsWrong: false,
   }),
 
   computed: {
@@ -108,9 +114,9 @@ export default {
       if (res.data.correct) {
         this.showCorrectAnswerModal()
       } else {
-        alert('sorry it is wrong')
+        // if not: show try again
+        this.showWrongAnswerModal()
       }
-      // if not: show try again
     },
     exerciseFinished (answer) {
       this.answer = answer
@@ -120,11 +126,16 @@ export default {
     nextQuestion () {
       this.current_exercise_index++
       this.answerIsCorrect = false
+      this.answerIsWrong = false
       this.exercise_finished = this.currentExercise.type === 'video_tutorial'
     },
 
     showCorrectAnswerModal () {
       this.answerIsCorrect = true
+    },
+
+    showWrongAnswerModal () {
+      this.answerIsWrong = true
     },
   },
 }
