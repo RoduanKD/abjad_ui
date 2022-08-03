@@ -66,7 +66,7 @@ export default {
     async callback (data) {
       const payload = new FormData()
       payload.append('answer', data.blob, 'test.wav')
-      payload.append('letter', 'ظ')
+      payload.append('letter', this.exercise.attributes.recordings[this.active_index].text)
 
       const res = await this.axios.post(`/exercises/${this.exercise.id}/submissions`, payload)
       if (res.data.correct) {
