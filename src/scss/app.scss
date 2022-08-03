@@ -50,6 +50,7 @@ $letter-size: 100px;
 // Import only what you need from Bulma
 @import "~bulma/bulma.sass";
 @import "~bulma-steps-component/bulma-steps.sass";
+@import "~bulma-pageloader/src/sass/index";
 
 .letter {
   position: relative;

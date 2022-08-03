@@ -32,6 +32,7 @@ export default {
     try {
       const res = await this.axios.get('/letters')
       this.letters = res.data.data
+      await this.$store.dispatch('hideSpinner')
     } catch (e) {
       console.log(e)
     }

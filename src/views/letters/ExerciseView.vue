@@ -97,6 +97,7 @@ export default {
   async created () {
     const res = await this.axios.get(`/letters/${this.letter}/exercises`)
     this.resource = res.data.data
+    await this.$store.dispatch('hideSpinner')
   },
 
   mounted () {

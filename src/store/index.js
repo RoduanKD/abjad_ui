@@ -8,12 +8,16 @@ export default new Vuex.Store({
   state: {
     hideNavbar: false,
     token: null,
+    showSpinner: false,
   },
   getters: {
   },
   mutations: {
     SET_TOKEN (state, token) {
       state.token = token
+    },
+    SET_SPINNER_STATUS (state, value) {
+      state.showSpinner = value
     },
   },
   actions: {
@@ -22,6 +26,15 @@ export default new Vuex.Store({
     },
     logout ({ commit }) {
       commit('SET_TOKEN', null)
+    },
+    toggleSpinner ({ state, commit }) {
+      commit('SET_SPINNER_STATUS', !state.showSpinner)
+    },
+    showSpinner ({ commit }) {
+      commit('SET_SPINNER_STATUS', true)
+    },
+    hideSpinner ({ commit }) {
+      commit('SET_SPINNER_STATUS', false)
     },
   },
   modules: {
