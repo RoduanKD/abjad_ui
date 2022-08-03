@@ -14,6 +14,7 @@
     </div>
     <div class="column is-12">
       <audio-recorder
+        :key="refresh_recorder"
         format="wav"
         class="mx-auto"
         :attempts="1"
@@ -58,22 +59,31 @@ export default {
     active_index: 0,
     recording: null,
     character: '',
+    refresh_recorder: 0,
   }),
 
   methods: {
-    callback (data) {
+    async callback (data) {
       const payload = new FormData()
-      payload.append('file', data.blob, 'test.wav')
+      payload.append('answer', data.blob, 'test.wav')
+      payload.append('letter', 'ظ')
 
-      this.axios.post('detect-character', payload).then(res => {
-        this.character = res.data
-      })
+      const res = await this.axios.post(`/exercises/${this.exercise.id}/submissions`, payload)
+      if (res.data.correct) {
+        this.$emit('showCorrectModal')
+        if (this.active_index < this.exercise.attributes.recordings.length - 1) { this.active_index++ } else { this.$emit('finished') }
+      } else {
+        this.$emit('showWrongModal')
+      }
+      this.recording = null
+      this.refresh_recorder++
     },
     upload (e) {
       this.recording = e.target.files[0]
       const payload = new FormData()
 
-      payload.append('file', this.recording, 'test.wav')
+      payload.append('answer', this.recording, 'test.wav')
+      payload.append('letter', this.exercise.attributes.recordings[this.active_index])
 
       this.axios.post('detect-character', payload).then(res => {
         this.character = res.data
