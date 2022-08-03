@@ -18,6 +18,8 @@
               :is="currentExerciseComponent"
               :exercise="currentExercise"
               @finished="exerciseFinished"
+              @showCorrectModal="showCorrectAnswerModal"
+              @showWrongModal="showWrongAnswerModal"
             />
           </vue-page-transition>
         </div>
@@ -107,9 +109,18 @@ export default {
 
   methods: {
     async submitAnswer () {
-      if (this.currentExercise.type === 'video_tutorial') return this.nextQuestion()
+      if (this.currentExercise.type === 'video_tutorial' || (!this.answer && this.exercise_finished)) return this.nextQuestion()
+
       // send answer to server
-      const res = await this.axios.post(`/exercises/${this.currentExercise.id}/submissions`, { answer: this.answer })
+      let payload = {
+        answer: this.answer,
+      }
+
+      if (this.answer instanceof Blob) {
+        payload = new FormData()
+        payload.append('answer', this.answer)
+      }
+      const res = await this.axios.post(`/exercises/${this.currentExercise.id}/submissions`, payload)
       // if answer is correct: show congrats & proceed
       if (res.data.correct) {
         this.showCorrectAnswerModal()
@@ -120,13 +131,14 @@ export default {
     },
     exerciseFinished (answer) {
       this.answer = answer
-      if (this.answer) { this.exercise_finished = true }
+      this.exercise_finished = true
     },
 
     nextQuestion () {
-      this.current_exercise_index++
       this.answerIsCorrect = false
       this.answerIsWrong = false
+      if (!this.exercise_finished) { return }
+      this.current_exercise_index++
       this.exercise_finished = this.currentExercise.type === 'video_tutorial'
     },
 

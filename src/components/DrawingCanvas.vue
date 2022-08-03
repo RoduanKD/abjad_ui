@@ -19,6 +19,14 @@ export default {
       default: '',
       required: true,
     },
+    blob: {
+      type: Boolean,
+      default: false,
+    },
+    format: {
+      type: String,
+      default: 'jpeg',
+    },
   },
 
   data: () => ({
@@ -115,7 +123,9 @@ export default {
     },
 
     save () {
-      this.localImage = this.canvas.toDataURL()
+      const self = this
+      if (this.blob) { this.canvas.toBlob(blob => { self.localImage = blob }, 'image/' + this.format) }
+      this.localImage = this.canvas.toDataURL('image/' + this.format)
     },
 
     findXY (res, e) {
