@@ -64,6 +64,7 @@ export default {
 
   methods: {
     selectChoice (choice) {
+      if (choice.voice) { (new Audio(choice.voice)).play() }
       this.selected = choice
       this.$emit('finished', choice.text)
     },
