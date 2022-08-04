@@ -36,5 +36,17 @@ import BModal from '@/components/BModal'
 
 export default {
   components: { BModal },
+
+  watch: {
+    $attrs: {
+      deep: true,
+      handler (val) {
+        if (val['is-opened']) {
+          (new Audio(require('@/assets/audio/try-again.wav'))).play()
+        }
+      },
+    },
+  },
+
 }
 </script>
