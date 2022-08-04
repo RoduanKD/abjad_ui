@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
   actions: {
     login ({ commit }, token) {
       commit('SET_TOKEN', token)
+      axios.defaults.headers.nthorization = `Bearer ${token}`
     },
     logout ({ commit }) {
       commit('SET_TOKEN', null)
