@@ -92,6 +92,7 @@ export default {
 
   .choice-image {
     width: 80%;
+    max-width: 130px;
   }
 }
 
