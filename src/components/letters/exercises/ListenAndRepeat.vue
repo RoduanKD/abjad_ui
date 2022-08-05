@@ -78,16 +78,22 @@ export default {
       this.recording = null
       this.refresh_recorder++
     },
-    upload (e) {
+    async upload (e) {
       this.recording = e.target.files[0]
       const payload = new FormData()
 
       payload.append('answer', this.recording, 'test.wav')
       payload.append('letter', this.exercise.attributes.recordings[this.active_index])
 
-      this.axios.post('detect-character', payload).then(res => {
-        this.character = res.data
-      })
+      const res = await this.axios.post(`/exercises/${this.exercise.id}/submissions`, payload)
+      if (res.data.correct) {
+        this.$emit('showCorrectModal')
+        if (this.active_index < this.exercise.attributes.recordings.length - 1) { this.active_index++ } else { this.$emit('finished') }
+      } else {
+        this.$emit('showWrongModal')
+      }
+      this.recording = null
+      this.refresh_recorder++
     },
   },
 }
