@@ -15,7 +15,6 @@
       <drawing-canvas
         v-model="letter"
         class="mx-auto"
-        blob
       />
       <button
         class="button is-danger is-small mt-2 mx-auto is-block"

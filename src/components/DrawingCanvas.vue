@@ -15,9 +15,13 @@ export default {
 
   props: {
     image: {
-      type: String,
+      type: [String, Blob, File],
       default: '',
       required: true,
+    },
+    file: {
+      type: Boolean,
+      default: true,
     },
     blob: {
       type: Boolean,
@@ -70,6 +74,9 @@ export default {
         this.ctx.clearRect(0, 0, this.width, this.height)
         this.localImage = ''
         this.flag = false
+        if (this.format === 'jpeg') {
+          this.fillBackgroundWithWhite()
+        }
       }
     },
 
@@ -80,6 +87,9 @@ export default {
 
   mounted () {
     this.init()
+    if (this.format === 'jpeg') {
+      this.fillBackgroundWithWhite()
+    }
   },
 
   methods: {
@@ -124,8 +134,10 @@ export default {
 
     save () {
       const self = this
-      if (this.blob) { this.canvas.toBlob(blob => { self.localImage = blob }, 'image/' + this.format) }
-      this.localImage = this.canvas.toDataURL('image/' + this.format)
+      if (this.blob) { this.canvas.toBlob(blob => { self.localImage = blob }, 'image/' + this.format) } else if (this.file) {
+        const data = this.canvas.toDataURL('image/' + this.format)
+        this.localImage = this.dataURLtoFile(data, 'image')
+      } else { this.localImage = this.canvas.toDataURL('image/' + this.format) }
     },
 
     findXY (res, e) {
@@ -166,6 +178,25 @@ export default {
         x: e.clientX || e.touches[0].clientX,
         y: e.clientY || e.touches[0].clientY,
       }
+    },
+
+    dataURLtoFile (dataUrl, filename) {
+      const arr = dataUrl.split(',')
+      const mime = arr[0].match(/:(.*?);/)[1]
+      const bStr = atob(arr[1])
+      let n = bStr.length
+      const u8arr = new Uint8Array(n)
+
+      while (n--) {
+        u8arr[n] = bStr.charCodeAt(n)
+      }
+
+      return new File([u8arr], filename, { type: mime })
+    },
+
+    fillBackgroundWithWhite () {
+      this.ctx.fillStyle = 'rgb(255, 255, 255)'
+      this.ctx.fillRect(0, 0, this.width, this.height)
     },
   },
 }

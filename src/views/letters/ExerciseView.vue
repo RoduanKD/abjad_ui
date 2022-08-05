@@ -117,7 +117,7 @@ export default {
         answer: this.answer,
       }
 
-      if (this.answer instanceof Blob) {
+      if (this.answer instanceof Blob || this.answer instanceof File) {
         payload = new FormData()
         payload.append('answer', this.answer)
       }
