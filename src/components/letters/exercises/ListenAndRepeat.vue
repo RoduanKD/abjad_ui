@@ -7,6 +7,7 @@
           :key="i"
           class="steps-segment"
           :class="{ 'is-active': i === active_index }"
+          @click="play(letter)"
         >
           <span class="steps-marker">{{ letter.text }}</span>
         </li>
@@ -95,6 +96,12 @@ export default {
       this.recording = null
       this.refresh_recorder++
     },
+
+    play (letter) {
+      if (letter.recording) {
+        (new Audio(letter.recording)).play()
+      }
+    },
   },
 }
 </script>
@@ -109,6 +116,7 @@ export default {
   transform: scale(1.4);
   font-size: 1.2em;
   font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
 }
 
 .ar {
