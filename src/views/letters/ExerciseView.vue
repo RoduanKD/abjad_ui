@@ -139,8 +139,12 @@ export default {
       this.answerIsCorrect = false
       this.answerIsWrong = false
       if (!this.exercise_finished) { return }
-      this.current_exercise_index++
-      this.exercise_finished = this.currentExercise.type === 'video_tutorial'
+      if (this.currentProgress === this.maxProgress) {
+        this.$router.push({ name: 'letters.index' })
+      } else {
+        this.current_exercise_index++
+        this.exercise_finished = this.currentExercise.type === 'video_tutorial'
+      }
     },
 
     showCorrectAnswerModal () {
