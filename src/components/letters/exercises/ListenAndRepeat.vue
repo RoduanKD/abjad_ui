@@ -105,6 +105,12 @@ export default {
   left: 0;
 }
 
+.steps-segment {
+  transform: scale(1.4);
+  font-size: 1.2em;
+  font-family: 'Courier New', Courier, monospace;
+}
+
 .ar {
   box-shadow: none !important;
 }
