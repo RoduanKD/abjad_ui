@@ -83,7 +83,7 @@ export default {
       const payload = new FormData()
 
       payload.append('answer', this.recording, 'test.wav')
-      payload.append('letter', this.exercise.attributes.recordings[this.active_index])
+      payload.append('letter', this.exercise.attributes.recordings[this.active_index].text)
 
       const res = await this.axios.post(`/exercises/${this.exercise.id}/submissions`, payload)
       if (res.data.correct) {
