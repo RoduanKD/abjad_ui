@@ -7,15 +7,18 @@
         </div>
       </div>
       <div class="column is-12">
-        <button class="button is-primary is-rounded">
+        <router-link
+          :to="{ name: 'letters.index' }"
+          class="button is-primary is-rounded"
+        >
           ابدأ اللعب
-        </button>
+        </router-link>
       </div>
       <div class="column is-4">
         <figure class="image">
           <img
             src="@/assets/penguin/let-us-learn.svg"
-            alt=""
+            alt="هيا نتعلم"
           >
         </figure>
       </div>
