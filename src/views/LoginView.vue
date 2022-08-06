@@ -29,7 +29,7 @@
                   </p>
                   <p
                     class="help is-danger"
-                    v-text="error"
+                    v-text="errors.email ? errors.email[0] : ''"
                   />
                 </div>
                 <div class="field">
@@ -48,7 +48,7 @@
                     </span>
                   </p>
                 </div>
-                <div class="filed">
+                <div class="field">
                   <label class="label">
                     ليس لديك حساب؟
                     <router-link :to="{ name: 'register' }">انقر هنا</router-link>
@@ -59,6 +59,7 @@
                     <button
                       class="button is-primary"
                       type="submit"
+                      :disabled="!canProceed"
                     >
                       تسجيل الدخول
                     </button>
@@ -81,7 +82,9 @@ export default {
     email: 'fathi@abjad.test',
     password: 'password',
     loading: false,
-    error: '',
+    errors: {
+      email: [],
+    },
   }),
 
   methods: {
@@ -102,7 +105,7 @@ export default {
         }
       })
         .catch(e => {
-          self.error = e.response.data.message
+          self.errors = e.response.data.errors
         })
         .finally(() => {
           self.loading = false

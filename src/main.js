@@ -16,6 +16,8 @@ axios.interceptors.response.use(undefined, err => {
     store.state.token = null
     axios.defaults.headers.Authorization = undefined
     router.push({ name: 'login' })
+  } else {
+    throw err
   }
 })
 

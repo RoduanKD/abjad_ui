@@ -15,21 +15,31 @@
 
 <script>
 import ChooseGender from '@/components/register/ChooseGender'
+import ChildInfo from '@/components/register/ChildInfo'
+import AccountCredentials from '@/components/register/AccountCredentials'
+import AccountCreated from '@/components/register/AccountCreated'
 
 export default {
+  name: 'RegisterView',
+
   components: {
     ChooseGender,
+    ChildInfo,
+    AccountCredentials,
+    AccountCreated,
   },
 
   data: () => ({
     form: {
-      child_name: '',
-      gender: '',
-      birthdate: '',
-      image: '',
       email: '',
       password: '',
       password_confirmation: '',
+      child: {
+        name: '',
+        is_male: '',
+        birthdate: '',
+        image: '',
+      },
     },
     stages: ['ChooseGender', 'ChildInfo', 'AccountCredentials', 'AccountCreated'],
     current_stage_index: 0,
@@ -43,7 +53,7 @@ export default {
 
   methods: {
     nextStage () {
-
+      this.current_stage_index++
     },
   },
 }

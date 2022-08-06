@@ -16,7 +16,7 @@
                 alt="فتى"
               >
               <img
-                v-if="value.gender === 'male'"
+                v-if="gender === 'male'"
                 src="@/assets/images/check.svg"
                 alt="selected"
               >
@@ -32,7 +32,7 @@
                 alt="فتاة"
               >
               <img
-                v-if="value.gender === 'female'"
+                v-if="gender === 'female'"
                 src="@/assets/images/check.svg"
                 alt="selected"
               >
@@ -46,7 +46,11 @@
         class="column is-2-desktop"
         style="max-width: 200px"
       >
-        <button class="button is-primary is-rounded is-fullwidth">
+        <button
+          class="button is-primary is-rounded is-fullwidth"
+          :disabled="!finished"
+          @click="$emit('finished')"
+        >
           التالي
         </button>
       </div>
@@ -63,10 +67,20 @@ export default {
     },
   },
 
+  computed: {
+    finished () {
+      return this.value.child.is_male !== ''
+    },
+
+    gender () {
+      return this.value.child.is_male ? 'male' : 'female'
+    },
+  },
+
   methods: {
     select (value) {
       const newValue = Object.assign(this.value)
-      newValue.gender = value
+      newValue.child.is_male = value === 'male'
       this.$emit('input', newValue)
     },
   },
