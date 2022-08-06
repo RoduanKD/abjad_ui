@@ -101,11 +101,11 @@ export default {
   },
 
   mounted () {
-    this.$store.state.hideNavbar = false
+    this.$store.state.hideNavbar = true
   },
 
   destroyed () {
-    this.$store.state.hideNavbar = true
+    this.$store.state.hideNavbar = false
   },
 
   methods: {
