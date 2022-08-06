@@ -48,6 +48,12 @@
                     </span>
                   </p>
                 </div>
+                <div class="filed">
+                  <label class="label">
+                    ليس لديك حساب؟
+                    <router-link :to="{ name: 'register' }">انقر هنا</router-link>
+                  </label>
+                </div>
                 <div class="field">
                   <p class="control">
                     <button

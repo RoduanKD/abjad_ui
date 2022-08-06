@@ -36,6 +36,11 @@ const routes = [
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue'),
   },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import(/* webpackChunkName: "register" */ '../views/RegisterView.vue'),
+  },
 ]
 
 const router = new VueRouter({
@@ -50,7 +55,7 @@ router.beforeEach((to, from, next) => {
   })
 })
 
-router.afterEach((to, from) => {
+router.afterEach((to) => {
   if (!to.matched[0].components.default.created) {
     store.dispatch('hideSpinner')
   }
