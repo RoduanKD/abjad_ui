@@ -3,12 +3,15 @@
     <div class="container">
       <div class="columns is-centered is-vcentered">
         <div class="column is-12 is-4-desktop">
-          <div class="card">
+          <div class="card is-secondary">
             <div class="card-content">
               <form
                 class="form"
                 @submit.prevent="login"
               >
+                <h1 class="title is-3">
+                  تسجيل الدخول
+                </h1>
                 <div class="field">
                   <label class="label">البريد الإلكتروني</label>
                   <p class="control has-icons-left">
@@ -102,3 +105,10 @@ export default {
   },
 }
 </script>
+
+<style>
+.login {
+  display: flex;
+  align-items: center;
+}
+</style>

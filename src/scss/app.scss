@@ -78,3 +78,9 @@ $letter-size: 100px;
 .fill-height {
   height: 100%;
 }
+
+.card {
+  &.is-secondary {
+    background-color: $cyan;
+  }
+}
