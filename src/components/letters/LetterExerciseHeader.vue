@@ -1,7 +1,7 @@
 <template>
   <div class="is-flex is-align-items-center is-fullwidth">
     <img
-      src="@/assets/penguin/listen-button.svg"
+      src="@/assets/images/listen-button.svg"
       alt="زر الاستماع"
       style="cursor: pointer"
       @click="play"
