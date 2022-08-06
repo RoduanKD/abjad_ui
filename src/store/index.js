@@ -41,5 +41,5 @@ export default new Vuex.Store({
   },
   modules: {
   },
-  plugins: [new VuexPersistence({ reducer: (state) => state.token }).plugin],
+  plugins: [new VuexPersistence().plugin],
 })
