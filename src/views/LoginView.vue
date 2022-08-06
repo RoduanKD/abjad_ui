@@ -87,6 +87,12 @@ export default {
     },
   }),
 
+  computed: {
+    canProceed () {
+      return this.email && this.password
+    },
+  },
+
   methods: {
     login () {
       const self = this
