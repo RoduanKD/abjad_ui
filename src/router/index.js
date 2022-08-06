@@ -32,6 +32,11 @@ const routes = [
     props: route => ({ letter: route.params.letter }),
   },
   {
+    path: '/children',
+    name: 'children',
+    component: () => import(/* webpackChunkName: "children" */ '../views/children/ListView.vue'),
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue'),
