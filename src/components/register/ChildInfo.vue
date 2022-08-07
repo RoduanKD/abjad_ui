@@ -106,8 +106,16 @@ export default {
   },
 
   methods: {
-    submit () {
-      this.$emit('finished')
+    async submit () {
+      if (this.$route.name === 'children.create') {
+        const payload = new FormData()
+        for (const key in this.value.child) { payload.append(key, this.value.child[key]) }
+
+        const res = await this.axios.post('/children', payload)
+        if (res.status === 201) { this.$router.push({ name: 'children.index' }) }
+      } else {
+        this.$emit('finished')
+      }
     },
 
     selectImage (e) {

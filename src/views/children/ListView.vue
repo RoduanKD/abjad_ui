@@ -49,7 +49,7 @@
         <div class="column is-12 has-text-centered">
           <button
             class="button is-primary is-rounded"
-            @click="$router.push('children.create')"
+            @click="$router.push({ name: 'children.create' })"
           >
             إضافة طفل
           </button>

@@ -33,8 +33,13 @@ const routes = [
   },
   {
     path: '/children',
-    name: 'children',
+    name: 'children.index',
     component: () => import(/* webpackChunkName: "children" */ '../views/children/ListView.vue'),
+  },
+  {
+    path: '/children/create',
+    name: 'children.create',
+    component: () => import(/* webpackChunkName: "children" */ '../views/RegisterView.vue'),
   },
   {
     path: '/login',
