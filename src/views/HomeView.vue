@@ -19,6 +19,7 @@
                   </router-link>
                 </div><div class="column is-4">
                   <router-link
+                    v-if="!$store.getters.isLoggedIn"
                     class="button is-primary is-block is-rounded is-outlined"
                     :to="{ name: 'login' }"
                   >

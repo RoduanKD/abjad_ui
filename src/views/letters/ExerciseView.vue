@@ -115,6 +115,7 @@ export default {
       // send answer to server
       let payload = {
         answer: this.answer,
+        child: this.$store.state.child.id,
       }
 
       if (this.answer instanceof Blob || this.answer instanceof File) {

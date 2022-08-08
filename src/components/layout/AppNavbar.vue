@@ -11,9 +11,26 @@
               الرئيسية
             </router-link>
           </li>
-          <li><a href="#">حول المشروع</a></li>
+          <li>
+            <router-link :to="{ name: 'children.index' }">
+              أطفالي
+            </router-link>
+          </li>
         </ul>
       </nav>
+      <div class="navbar-end is-flex is-flex-direction-column is-justify-content-center">
+        <div
+          v-if="$store.getters.isLoggedIn"
+          class="image mb-3"
+          style="cursor:pointer"
+          @click="$router.push({ name: 'children.select' })"
+        >
+          <img
+            :src="$store.state.child.image"
+            :alt="$store.state.child.name"
+          >
+        </div>
+      </div>
     </div>
   </div>
 </template>

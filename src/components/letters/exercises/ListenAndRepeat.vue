@@ -68,6 +68,7 @@ export default {
       const payload = new FormData()
       payload.append('answer', data.blob, 'test.wav')
       payload.append('letter', this.exercise.attributes.recordings[this.active_index].text)
+      payload.append('child', this.$store.state.child.id)
 
       const res = await this.axios.post(`/exercises/${this.exercise.id}/submissions`, payload)
       if (res.data.correct) {
@@ -85,6 +86,7 @@ export default {
 
       payload.append('answer', this.recording, 'test.wav')
       payload.append('letter', this.exercise.attributes.recordings[this.active_index].text)
+      payload.append('child', this.$store.state.child.id)
 
       const res = await this.axios.post(`/exercises/${this.exercise.id}/submissions`, payload)
       if (res.data.correct) {

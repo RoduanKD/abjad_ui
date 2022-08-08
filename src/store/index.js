@@ -10,8 +10,13 @@ export default new Vuex.Store({
     hideNavbar: false,
     token: null,
     showSpinner: false,
+    user: null,
+    child: null,
   },
   getters: {
+    isLoggedIn (state) {
+      return state.token
+    },
   },
   mutations: {
     SET_TOKEN (state, token) {
@@ -20,11 +25,19 @@ export default new Vuex.Store({
     SET_SPINNER_STATUS (state, value) {
       state.showSpinner = value
     },
+    SET_USER (state, user) {
+      state.user = user
+    },
+    SET_CHILD (state, child) {
+      state.child = child
+    },
   },
   actions: {
-    login ({ commit }, token) {
-      commit('SET_TOKEN', token)
-      axios.defaults.headers.Authorization = `Bearer ${token}`
+    login ({ commit }, data) {
+      commit('SET_TOKEN', data.token)
+      axios.defaults.headers.Authorization = `Bearer ${data.token}`
+      commit('SET_USER', data.user)
+      commit('SET_CHILD', data.user.children[0])
     },
     logout ({ commit }) {
       commit('SET_TOKEN', null)

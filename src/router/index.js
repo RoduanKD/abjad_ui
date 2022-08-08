@@ -34,12 +34,18 @@ const routes = [
   {
     path: '/children',
     name: 'children.index',
-    component: () => import(/* webpackChunkName: "children" */ '../views/children/ListView.vue'),
+    component: () => import(/* webpackChunkName: "children-index" */ '../views/children/ListView.vue'),
   },
   {
     path: '/children/create',
     name: 'children.create',
-    component: () => import(/* webpackChunkName: "children" */ '../views/RegisterView.vue'),
+    component: () => import(/* webpackChunkName: "children.create" */ '../views/RegisterView.vue'),
+  },
+  {
+    path: '/children/select',
+    name: 'children.select',
+    component: () => import(/* webpackChunkName: "children.select" */ '../views/children/ListView.vue'),
+    props: { selectChild: true },
   },
   {
     path: '/login',

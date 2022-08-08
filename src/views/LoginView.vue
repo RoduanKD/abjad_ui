@@ -105,7 +105,7 @@ export default {
 
       this.axios.post('/login', payload).then(res => {
         if (res.status === 200) {
-          self.$store.dispatch('login', res.data.data.token).then(() => {
+          self.$store.dispatch('login', res.data.data).then(() => {
             self.$router.push({ name: 'letters.index' })
           })
         }

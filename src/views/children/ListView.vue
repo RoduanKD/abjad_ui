@@ -21,14 +21,19 @@
               <div class="columns is-mobile">
                 <div class="column is-9">
                   <div v-text="child.name" />
-                  <div>
+                  <div v-if="!selectChild">
                     المستوى {{ child.level }}
                   </div>
-                  <div>
+                  <div v-if="!selectChild">
                     عدد النقاط {{ child.points_count }}
                   </div>
-                  <div>
-                    أيام الحماس {{ child.streak_days_count }}
+                  <div v-if="selectChild">
+                    <button
+                      class="button is-primary is-small"
+                      @click="$store.commit('SET_CHILD', child)"
+                    >
+                      ابدأ اللعب
+                    </button>
                   </div>
                 </div>
                 <div class="column is-3">
@@ -66,14 +71,17 @@
 export default {
   name: 'ChildrenList',
 
-  data: () => ({
-    children: [],
-  }),
+  props: {
+    selectChild: {
+      type: Boolean,
+      default: false,
+    },
+  },
 
-  async created () {
-    const res = await this.axios.get('/children')
-    this.children = res.data.data
-    this.$store.dispatch('hideSpinner')
+  computed: {
+    children () {
+      return this.$store.state.user.children
+    },
   },
 }
 </script>
