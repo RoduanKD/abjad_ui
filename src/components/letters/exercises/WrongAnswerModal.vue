@@ -16,9 +16,6 @@
           </div>
         </div>
       </div>
-      <div class="column has-text-centered is-size-4">
-        الإجابة خاطئة، أعد المحاولة!
-      </div>
     </div>
     <template #footer>
       <button
