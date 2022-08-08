@@ -4,7 +4,10 @@
       <h1 class="title is-2 has-text-primary has-text-centered mb-6">
         أطفالي
       </h1>
-      <div class="columns is-multiline is-centered">
+      <div
+        class="columns is-multiline is-centered"
+        style="row-gap: 50px"
+      >
         <div
           v-for="child in children"
           :key="child.id"
